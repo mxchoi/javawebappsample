@@ -24,10 +24,10 @@ node {
       
       // login Azure
       echo "login azure... 1"
-      echo "My client id is $AZURE_CLIENT_ID"
-      echo "My client secret is $AZURE_CLIENT_SECRET"
-      echo "My tenant id is $AZURE_TENANT_ID"
-      echo "My subscription id is $AZURE_SUBSCRIPTION_ID"      
+      //echo "My client id is $AZURE_CLIENT_ID"
+      //echo "My client secret is $AZURE_CLIENT_SECRET"
+      //echo "My tenant id is $AZURE_TENANT_ID"
+      //echo "My subscription id is $AZURE_SUBSCRIPTION_ID"      
             
       withCredentials([usernamePassword(credentialsId: 'credentials_id')]) {               
        sh '''                   
