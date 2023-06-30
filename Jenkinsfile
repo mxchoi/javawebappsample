@@ -23,10 +23,21 @@ node {
       def webAppName = 'jenkins-get-started-wa'
       // login Azure
       echo "login azure..."
+
+      steps {
+          script {
+              userVar = null
+              passVar = null
+              withCredentials([usernamePassword(credentialsId: 'jenkins-get-started-sp', passwordVariable: 'CPR8Q~VgiCB57OS-DGvOhUg45WWLxhOBvfs8uat5', usernameVariable: '63905e8f-c130-46c2-8f1d-698f804c9dcc')]) {
+                  userVar = username
+                  passVar = password
+              }
+              echo "Username: ${userVar}"
+              echo "Password: ${passVar}"
+          }
+      }
       
-      withCredentials([usernamePassword(credentialsId: 'jenkins-get-started-sp', passwordVariable: 'CPR8Q~VgiCB57OS-DGvOhUg45WWLxhOBvfs8uat5', usernameVariable: '63905e8f-c130-46c2-8f1d-698f804c9dcc')]) {
-       echo "run sh"
-        
+      withCredentials([usernamePassword(credentialsId: 'JenkinsGetStartedSP', passwordVariable: 'CPR8Q~VgiCB57OS-DGvOhUg45WWLxhOBvfs8uat5', usernameVariable: '63905e8f-c130-46c2-8f1d-698f804c9dcc')]) {               
        sh '''         
           az config unset core.allow_broker
           az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
@@ -34,7 +45,7 @@ node {
         '''
       }
 
-      println "publish..."
+      echo "publish..."
       // get publish settings
       def pubProfilesJson = sh script: "az webapp deployment list-publishing-profiles -g $resourceGroup -n $webAppName", returnStdout: true
       def ftpProfile = getFtpPublishProfile pubProfilesJson
