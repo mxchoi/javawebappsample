@@ -24,17 +24,12 @@ node {
       
       // login Azure
       echo "login azure... 1"
-
-      withCredentials([usernamePassword(credentialsId: 'JenkinsGetStartedSP', passwordVariable: 'CPR8Q~VgiCB57OS-DGvOhUg45WWLxhOBvfs8uat5', usernameVariable: '63905e8f-c130-46c2-8f1d-698f804c9dcc')]) {               
-          echo "My client id is $AZURE_CLIENT_ID"
-          echo "My client secret is $AZURE_CLIENT_SECRET"
-          echo "My tenant id is $AZURE_TENANT_ID"
-          echo "My subscription id is $AZURE_SUBSCRIPTION_ID"
-      }
-      
-
-      
-      withCredentials([usernamePassword(credentialsId: 'JenkinsGetStartedSP', passwordVariable: 'CPR8Q~VgiCB57OS-DGvOhUg45WWLxhOBvfs8uat5', usernameVariable: '63905e8f-c130-46c2-8f1d-698f804c9dcc')]) {               
+      echo "My client id is $AZURE_CLIENT_ID"
+      echo "My client secret is $AZURE_CLIENT_SECRET"
+      echo "My tenant id is $AZURE_TENANT_ID"
+      echo "My subscription id is $AZURE_SUBSCRIPTION_ID"      
+            
+      withCredentials([usernamePassword(credentialsId: 'credentials_id']) {               
        sh '''                   
           az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
           az account set -s $AZURE_SUBSCRIPTION_ID
