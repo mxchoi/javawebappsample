@@ -25,6 +25,7 @@ node {
       println "login azure..."
       withCredentials([usernamePassword(credentialsId: 'jenkins-get-started-sp', passwordVariable: 'CPR8Q~VgiCB57OS-DGvOhUg45WWLxhOBvfs8uat5', usernameVariable: '63905e8f-c130-46c2-8f1d-698f804c9dcc')]) {
        sh '''         
+          az config unset core.allow_broker
           az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
           az account set -s $AZURE_SUBSCRIPTION_ID
         '''
