@@ -22,12 +22,12 @@ node {
       def resourceGroup = 'jenkins-get-started-rg'
       def webAppName = 'jenkins-get-started-wa'
       // login Azure
-      println "login azure..." + $AZURE_TENANT_ID     
+      echo "login azure..."
       
       withCredentials([usernamePassword(credentialsId: 'jenkins-get-started-sp', passwordVariable: 'CPR8Q~VgiCB57OS-DGvOhUg45WWLxhOBvfs8uat5', usernameVariable: '63905e8f-c130-46c2-8f1d-698f804c9dcc')]) {
-       println "clientid:" + $AZURE_CLIENT_ID
-       println "secrete:" + $AZURE_CLIENT_SECRET
-       println "tenant:" + $AZURE_TENANT_ID
+       echo "clientid:" + $AZURE_CLIENT_ID
+       echo "secrete:" + $AZURE_CLIENT_SECRET
+       echo "tenant:" + $AZURE_TENANT_ID
         
        sh '''         
           az config unset core.allow_broker
