@@ -23,19 +23,6 @@ node {
       def webAppName = 'jenkins-get-started-wa'
       // login Azure
       echo "login azure..."
-
-      steps {
-          script {
-              userVar = null
-              passVar = null
-              withCredentials([usernamePassword(credentialsId: 'jenkins-get-started-sp', passwordVariable: 'CPR8Q~VgiCB57OS-DGvOhUg45WWLxhOBvfs8uat5', usernameVariable: '63905e8f-c130-46c2-8f1d-698f804c9dcc')]) {
-                  userVar = username
-                  passVar = password
-              }
-              echo "Username: ${userVar}"
-              echo "Password: ${passVar}"
-          }
-      }
       
       withCredentials([usernamePassword(credentialsId: 'JenkinsGetStartedSP', passwordVariable: 'CPR8Q~VgiCB57OS-DGvOhUg45WWLxhOBvfs8uat5', usernameVariable: '63905e8f-c130-46c2-8f1d-698f804c9dcc')]) {               
        sh '''         
